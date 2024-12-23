@@ -18,11 +18,11 @@ box=Entry(c,width=4,font=("Times New Roman",20),bg="grey40",fg="grey25")
 box.place(x=180,y=138)
 
 
-b=Button(c,text="Show Calendar",font=("Sitka",25),bg="grey15",fg="grey9")
-b.place(x=95,y=185)
+b=Button(c,text="Show Calendar",font=("Palatino Linotype",20),bg="grey15",fg="grey9")
+b.place(x=110,y=185)
 
-exit=Button(c,text="Exit",font=("Sitka",25),bg="grey15",fg="grey9",command=c.destroy)
-exit.place(x=170,y=255)
+exit=Button(c,text="Exit",font=("Palatino Linotype",20),bg="grey15",fg="grey9",command=c.destroy)
+exit.place(x=175,y=255)
 
 
 mainloop()
