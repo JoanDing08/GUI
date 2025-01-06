@@ -1,0 +1,52 @@
+import random
+from tkinter import *
+from tkinter.ttk import *
+
+w=Tk()
+w.geometry("360x350")
+w.title("Order")
+
+def order_code():
+  global new,your_code,c1,c2
+  c1=random.randint(1,30)
+  c2=f"Order number: {c1}"
+  w.destroy()
+  new=Tk()
+  your_code=Label(new,text=c2)
+  your_code.pack()
+
+e1=Label(w,text="Email")
+e1.place(x=20,y=10)
+p1=Label(w,text="Password")
+p1.place(x=20,y=45)
+
+e2=Entry(w)
+e2.place(x=120,y=10)
+p2=Entry(w,show="*")
+p2.place(x=120,y=45)
+
+q1=Label(w,text="Food options: Chicken sandwich, B.L.T, Veg sandwich, None")
+q1.place(x=20,y=90)
+q2=Label(w,text="Beverage options: Cola, Fanta, Orange juice, Water, None")
+q2.place(x=20,y=160)
+q3=Label(w,text="Dessert options: Ice cream, Ice lolly, Chocolate cake, None")
+q3.place(x=20,y=230)
+
+a1=Entry(w)
+a1.place(x=20,y=120)
+a2=Entry(w)
+a2.place(x=20,y=190)
+a3=Entry(w)
+a3.place(x=20,y=260)
+
+n1=Spinbox(w,from_=0,to=25)
+n1.place(x=200,y=120)
+n2=Spinbox(w,from_=0,to=25)
+n2.place(x=200,y=190)
+n3=Spinbox(w,from_=0,to=25)
+n3.place(x=200,y=260)
+
+s=Button(w,text="Submit Order",command=order_code)
+s.place(x=132,y=300)
+
+mainloop()
