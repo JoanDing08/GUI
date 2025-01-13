@@ -1,0 +1,83 @@
+from tkinter import *
+import random
+
+w=Tk()
+
+score1=0
+score2=0
+
+options=["Rock","Paper","Scissors"]
+computer=random.choice(options)
+
+def tie():
+  l2.config(text="Tie")
+  t3.config(text="Your score: "+str(score1))
+  t4.config(text="Bot score: "+str(score2))
+
+def win():
+  global score1
+  l2.config(text="You win")
+  score1+=1
+  t3.config(text="Your score: "+str(score1))
+  t4.config(text="Bot score: "+str(score2))
+
+def lose():
+  global score2
+  l2.config(text="You lose")
+  score2+=1
+  t3.config(text="Your score: "+str(score1))
+  t4.config(text="Bot score: "+str(score2))
+
+def winner(player_input):
+  computer=random.choice(options)
+  t1.config(text="You selected: "+player_input)
+  t2.config(text="Bot selected: "+computer)
+  if player_input==computer:
+    tie()
+  elif player_input==options[0]:
+    if computer==options[1]:
+      lose()
+    if computer==options[2]:
+      win()
+  elif player_input==options[1]:
+    if computer==options[0]:
+      win()
+    if computer==options[2]:
+      lose()
+  elif player_input==options[2]:
+    if computer==options[0]:
+      lose()
+    if computer==options[1]:
+      win()
+
+
+
+l1=Label(w,text="Rock, Paper, Scissors",font=("arial",17))
+l2=Label(w,text="Select an option.",font=("arial",10),fg="green")
+l3=Label(w,text="Your options: ",font=("arial",15))
+l4=Label(w,text="Score: ",font=("arial",15))
+
+r=Button(w,text="Rock",font=("arial",20),bg="light green",command=lambda:winner(options[0]))
+p=Button(w,text="Paper",font=("arial",20),bg="light blue",command=lambda:winner(options[1]))
+s=Button(w,text="Scissors",font=("arial",20),bg="pink",command=lambda:winner(options[2]))
+
+t1=Label(w,text="You selected: ",font=("arial",15))
+t2=Label(w,text="Bot selected: ",font=("arial",15))
+t3=Label(w,text="Your score: ",font=("arial",15))
+t4=Label(w,text="Bot score: ",font=("arial",15))
+
+l1.grid(row=0,column=0)
+l2.grid(row=1,column=0)
+l3.grid(row=2,column=0)
+l4.grid(row=3,column=0)
+
+r.grid(row=2,column=1)
+p.grid(row=2,column=2)
+s.grid(row=2,column=3)
+
+t1.grid(row=4,column=0)
+t2.grid(row=5,column=0)
+t3.grid(row=4,column=1)
+t4.grid(row=5,column=1)
+
+mainloop()
