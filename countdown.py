@@ -12,16 +12,16 @@ second=StringVar()
 
 #setting default value of variables
 
-hour.set("00")
-minute.set("00")
-second.set("00")
+hour.set("0")
+minute.set("0")
+second.set("0")
 
 def link():
   total=int(hour.get())*3600+int(minute.get())*60+int(second.get())
-  while total>0:
+  while total>=0:
     m,s=divmod(total,60)
     h=0
-    if m>60:
+    if m>=60:
       h,m=divmod(m,60)
     hour.set(h)
     minute.set(m)
@@ -30,15 +30,13 @@ def link():
     time.sleep(1)
     if total==0:
       messagebox.showinfo(message="Time's up.")
-    total-=1
-
-    
+    total-=1 
 
 a=Entry(w,width=2,font=("Calibri",30),textvariable=hour)
 b=Entry(w,width=2,font=("Calibri",30),textvariable=minute)
 c=Entry(w,width=2,font=("Calibri",30),textvariable=second)
 
-strt=Button(w,text="Start \nCountdown",font=("Calibri",10))
+strt=Button(w,text="Start \nCountdown",font=("Calibri",10),command=link)
 
 a.grid(row=0,column=0,padx=5)
 b.grid(row=0,column=1,padx=5)
