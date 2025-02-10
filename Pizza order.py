@@ -24,14 +24,14 @@ l3.grid(row=4,column=1,pady=5)
 
 c1=Combobox(w,textvariable=text1,width=10)
 c1["values"]=tuple(pizzas)
-c1.grid(row=0,column=1,padx=10)
+c1.grid(row=0,column=1,padx=55)
 
 c2=Combobox(w,textvariable=num1,width=10)
 c2["values"]=tuple(range(11))
-c2.grid(row=1,column=1,padx=10)
+c2.grid(row=1,column=1,padx=55)
 
 r1=Radiobutton(w,text="S",variable=text2,value="small")
-r1.grid(row=0,column=3,padx=10)
+r1.grid(row=0,column=3,padx=30)
 
 r2=Radiobutton(w,text="M",variable=text2,value="medium")
 r2.grid(row=1,column=3,padx=5)
