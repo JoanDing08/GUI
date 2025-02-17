@@ -7,6 +7,7 @@ class tictactoe:
     self.root.title("Tic Tac Toe")
     self.defplayer="X"
     self.buttons=[[None for _ in range(3)] for _ in range(3)]
+    self.makeButton()
   def makeButton(self):
     for row in range(3):
       for column in range(3):
