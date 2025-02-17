@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.ttk import *
 from tkinter.filedialog import *
+from tkinter import messagebox
 
 w=Tk()
 
@@ -19,10 +20,22 @@ def open():
     for i in item:
       lb.insert(END,i)
 
+def add():
+  lb.insert(END,e.get())
+  e.delete(0,END)
+
+def delete():
+  files=lb.curselection()
+  if files:
+    lb.delete(files)
+  else:
+    messagebox.showerror(message="Please select an item to delete.")
+
+
 b1=Button(w,text="Save",command=save)
-b2=Button(w,text="Add")
+b2=Button(w,text="Add",command=add)
 b3=Button(w,text="Open",command=open)
-b4=Button(w,text="Delete")
+b4=Button(w,text="Delete",command=delete)
 
 e=Entry(w,width=16)
 
