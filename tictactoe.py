@@ -8,12 +8,16 @@ class tictactoe:
     self.defplayer="X"
     self.buttons=[[None for _ in range(3)] for _ in range(3)]
     self.makeButton()
+  def reset(self):
+    self.makeButton()
   def makeButton(self):
     for row in range(3):
       for column in range(3):
         button=Button(self.root,text=" ",font=("Calibri",30),width=5,height=2,command=lambda r=row,c=column:self.clicked(r,c))
         button.grid(row=row,column=column)
         self.buttons[row][column]=button
+    restart=Button(self.root,text="RESET",font=("Calibri",30),command=self.reset)
+    restart.grid(row=3,column=1)
   def clicked(self,row,column):
     if self.buttons[row][column]["text"]==" " and not self.check_winner():
       self.buttons[row][column]["text"]=self.defplayer
@@ -38,12 +42,11 @@ class tictactoe:
     if self.buttons[0][2]["text"]==self.buttons[1][1]["text"]==self.buttons[2][0]["text"]!=" ":
       return True
     return False
-
   def full_house(self):
     return all(self.buttons[row][column]["text"]!=" " for row in range(3) for column in range(3))
-  
-root=Tk()
 
+root=Tk()
+root.config(bg="grey75")
 game=tictactoe(root)
 
 mainloop()
