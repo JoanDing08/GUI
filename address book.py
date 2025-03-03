@@ -21,6 +21,7 @@ def save():
   files=asksaveasfile(defaultextension=".txt")
   if files is not None:
     print(info,file=files)
+    delete()
   else:
     messagebox.showinfo(message="You have not selected a file.\n Please select a file to continue.")
 
@@ -41,11 +42,44 @@ def clear():
   e4.delete(0,END)
   e5.delete(0,END)
 
+def edit():
+  clear()
+  file=lb.curselection()
+  if file:
+    e1.insert(0,lb.get(file))
+    details=info[e1.get()]
+    e2.insert(0,details[0])
+    e3.insert(0,details[1])
+    e4.insert(0,details[2])
+    e5.insert(0,details[3])
+  else:
+    messagebox.showinfo(message="You have not selected a file.\n Please select a file to continue.")
 
 
+def delete():
+  file=lb.curselection()
+  try:
+    lb.delete(file)
+    clear()
+  except:
+    messagebox.showinfo(message="You have not selected a file.\n Please select a file to continue.")
+
+
+def display(event):
+  widget=Toplevel(w)
+  file=lb.curselection()
+  details=""
+  if file:
+    key=lb.get(file)
+    details=f"Name:{key}\n"
+    values=info[key]
+    details+=f"Address:{values[0]}\nMobile:{values[1]}\nEmail:{values[2]}\nBirthdate:{values[3]}"
+  l7=Label(widget,text=details)
+  l7.pack()
 
 
 lb=Listbox(w)
+lb.bind("<<ListboxSelect>>",display)
 
 l1=Label(w,text="Address Book")
 l2=Label(w,text="Name: ")
@@ -61,8 +95,8 @@ e4=Entry(w)
 e5=Entry(w)
 
 b1=Button(w,text="Open",command=open)
-b2=Button(w,text="Edit")
-b3=Button(w,text="Delete")
+b2=Button(w,text="Edit",command=edit)
+b3=Button(w,text="Delete",command=delete)
 b4=Button(w,text="Add/Update",command=add)
 b5=Button(w,text="Save",command=save)
 
