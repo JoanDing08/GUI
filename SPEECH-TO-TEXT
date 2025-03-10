@@ -10,7 +10,7 @@ def transcribe():
   recog=sr.Recognizer()
   with sr.Microphone() as source:
     print("start speaking")
-    speech=recog.listen(source)
+    speech=recog.listen(source,timeout=10)
     try:
       text=recog.recognize_google(speech)
     except:
