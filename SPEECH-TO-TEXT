@@ -1,0 +1,36 @@
+from tkinter import *
+import speech_recognition as sr
+from tkinter import messagebox
+from tkinter.filedialog import *
+
+w=Tk()
+w.title("SPEECH-TO-TEXT")
+
+def transcribe():
+  recog=sr.Recognizer()
+  with sr.Microphone() as source:
+    print("start speaking")
+    speech=recog.listen(source)
+    try:
+      text=recog.recognize_google(speech)
+    except:
+      text="Unable to process output"
+    recorded.delete(1.0,END)
+    recorded.insert(END,text)
+
+def save():
+  file=asksaveasfile(defaultextension=".txt")
+  if file:
+    print(recorded.get(1.0,END),file=file)
+  else:
+    messagebox.showinfo(message="Warning\nText has not been saved")
+
+record=Button(w,text="RECORD",command=transcribe)
+recorded=Text(w,width=20,height=2)
+savefile=Button(w,text="SAVE TEXT",command=save)
+
+record.grid(row=0,column=0,pady=10,padx=40)
+recorded.grid(row=1,column=0,pady=10,padx=40)
+savefile.grid(row=2,column=0,pady=10,padx=40)
+
+mainloop()
