@@ -27,6 +27,7 @@ class drawing:
     self.curcolor="black"
     self.curbutton=self.pen
     self.canvas.bind("<B1-Motion>",self.paint)
+    self.canvas.bind("<ButtonRelease-1>",self.reset)
 
   def sink(self,btn):
     self.curbutton.config(relief=RAISED)
@@ -51,9 +52,14 @@ class drawing:
     self.thickness=self.pensize.get()
     if self.oldx and self.oldy:
       self.canvas.create_line(self.oldx,self.oldy,event.x,event.y,width=self.thickness,fill=self.curcolor)
-      self.oldx=event.x
-      self.oldy=event.y
+    self.oldx=event.x
+    self.oldy=event.y
+  
+  def reset(self,event):
+    self.oldx=None
+    self.oldy=None
 
 drawing()
 
 mainloop()
+
