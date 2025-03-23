@@ -18,9 +18,6 @@ with open(riddles) as file:
 for i in Qs_and_As:
   for j in i:
     all.append(j)
-  
-for i in all:
-  print(i)
     
 def checkA():
   global curindex,qcount,streak
