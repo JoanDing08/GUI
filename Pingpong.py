@@ -55,7 +55,7 @@ class ball():
   def p2collide(self,pos):
     ppos=self.board.coords(self.p2.id)
     if pos[1]>=ppos[1] and pos[1]<=ppos[3]:
-      if pos[0]>=ppos[0] and pos[0]<=ppos[2]:
+      if pos[2]>=ppos[0] and pos[2]<=ppos[2]:
         return True
     return False
 
