@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 from tkinter import messagebox
+import time
 
 w=Tk()
 w.title("Pingpong")
@@ -47,13 +48,13 @@ class ball():
       self.x=-4
   def p1collide(self,pos):
     ppos=self.board.coords(self.p1.id)
-    if pos[1]>ppos[1] and pos[1]<ppos[3]:
-      if pos[0]>ppos[0] and pos[0]<ppos[2]:
+    if pos[1]>=ppos[1] and pos[1]<=ppos[3]:
+      if pos[0]>=ppos[0] and pos[0]<=ppos[2]:
         return True
       return False
   def p2collide(self,pos):
     ppos=self.board.coords(self.p2.id)
-    if pos[1]>ppos[1] and pos[1]<ppos[3]:
+    if pos[1]>=ppos[1] and pos[1]<=ppos[3]:
       if pos[0]>=ppos[0] and pos[0]<=ppos[2]:
         return True
     return False
@@ -62,12 +63,12 @@ class ball():
 class paddle1():
   def __init__(self,board):
     self.board=board
-    self.id=board.create_rectangle(10,20,90,100)
+    self.id=board.create_rectangle(10,180,20,250,fill="white")
     self.y=0
     self.height=self.board.winfo_height()
     self.width=self.board.winfo_width()
-    self.board.bind_all("W",self.up)
-    self.board.bind_all("S",self.down)
+    self.board.bind_all("w",self.up)
+    self.board.bind_all("s",self.down)
   def draw(self):
     self.board.move(self.id,0,self.y)
     pos=self.board.coords(self.id)
@@ -83,7 +84,7 @@ class paddle1():
 class paddle2():
   def __init__(self,board):
     self.board=board
-    self.id=board.create_rectangle(580,590,660,670)
+    self.id=board.create_rectangle(470,390,480,490,fill="white")
     self.y=0
     self.height=self.board.winfo_height()
     self.width=self.board.winfo_width()
@@ -114,5 +115,6 @@ while True:
   player2.draw()
   w.update_idletasks()
   w.update()
+  time.sleep(0.01)
 
 mainloop()
