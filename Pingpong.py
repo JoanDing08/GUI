@@ -20,8 +20,8 @@ class ball():
     self.board.move(self.id,250,300)
     self.x=random.randint(-3,3)
     self.y=random.randint(-3,3)
-    self.canvas_height=self.canvas.winfo_height()
-    self.canvas_width=self.canvas.winfo_width()
+    self.canvas_height=self.board.winfo_height()
+    self.canvas_width=self.board.winfo_width()
     self.p1score=0
     self.p2score=0
   def update(self):
@@ -69,7 +69,7 @@ class paddle1():
     self.board.bind_all("W",self.up)
     self.board.bind_all("S",self.down)
   def draw(self):
-    self.board.move(self.id,self.y)
+    self.board.move(self.id,0,self.y)
     pos=self.board.coords(self.id)
     if pos[1]<=0:
       self.y=0
@@ -83,14 +83,14 @@ class paddle1():
 class paddle2():
   def __init__(self,board):
     self.board=board
-    self.id=board.create_rectangle(10,20,90,100)
+    self.id=board.create_rectangle(580,590,660,670)
     self.y=0
     self.height=self.board.winfo_height()
     self.width=self.board.winfo_width()
     self.board.bind_all("<KeyPress-Up>",self.up)
     self.board.bind_all("<KeyPress-Down>",self.down)
   def draw(self):
-    self.board.move(self.id,self.y)
+    self.board.move(self.id,0,self.y)
     pos=self.board.coords(self.id)
     if pos[1]<=0:
       self.y=0
@@ -101,9 +101,9 @@ class paddle2():
   def down(self,event):
     self.y=4
 
-circle=ball(board,p1,p2)
 player1=paddle1(board)
 player2=paddle2(board)
+circle=ball(board,player1,player2)
 
 while True:
   if circle.p1score==10 or circle.p2score==10:
